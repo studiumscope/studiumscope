@@ -1,5 +1,5 @@
 <div class="card-header">
-    <h3><?= isset($dado) ? "Cadastrar Horário" : "Editar Horário" ?></h3>
+    <h3><?= isset($dado) ? "Editar Horário" : "Cadastrar Horário" ?></h3>
 </div>
 
 <div class="card mt-5 sem-bordas">
@@ -9,49 +9,80 @@
 
             <input type="hidden" name="id" value="<?= $dado['id'] ?? '' ?>">
 
-            <div class="insere-azul d-flex align-items-center">
-                <label class="form-label">Dom</label>
-                <input class="form-control" type="text" name="domingo"
-                       value="<?= $dado["domingo"] ?? '' ?>">
+            <div class="mb-4">
+                <label class="form-label">Período</label>
+
+                <select class="form-control" name="periodo" required>
+
+                    <?php for ($i = 1; $i <= 6; $i++): ?>
+
+                        <option value="<?= $i ?>"
+                            <?= (($dado['periodo'] ?? $_GET['periodo'] ?? '') == $i) ? 'selected' : '' ?>>
+                            <?= $i ?>º período
+                        </option>
+
+                    <?php endfor; ?>
+
+                </select>
             </div>
 
-            <div class="insere-azul d-flex align-items-center">
-                <label class="form-label">Seg</label>
-                <input class="form-control" type="text" name="segunda"
-                       value="<?= $dado["segunda"] ?? '' ?>">
+            <div class="insere-azul d-flex align-items-center mb-3">
+                <label class="form-label me-3">Dom</label>
+                <input class="form-control"
+                       type="text"
+                       name="domingo"
+                       value="<?= $dado['domingo'] ?? '' ?>">
             </div>
 
-            <div class="insere-azul d-flex align-items-center">
-                <label class="form-label">Ter</label>
-                <input class="form-control" type="text" name="terca"
-                       value="<?= $dado["terca"] ?? '' ?>">
+            <div class="insere-azul d-flex align-items-center mb-3">
+                <label class="form-label me-3">Seg</label>
+                <input class="form-control"
+                       type="text"
+                       name="segunda"
+                       value="<?= $dado['segunda'] ?? '' ?>">
             </div>
 
-            <div class="insere-azul d-flex align-items-center">
-                <label class="form-label">Qua</label>
-                <input class="form-control" type="text" name="quarta"
-                       value="<?= $dado["quarta"] ?? '' ?>">
+            <div class="insere-azul d-flex align-items-center mb-3">
+                <label class="form-label me-3">Ter</label>
+                <input class="form-control"
+                       type="text"
+                       name="terca"
+                       value="<?= $dado['terca'] ?? '' ?>">
             </div>
 
-            <div class="insere-azul d-flex align-items-center">
-                <label class="form-label">Qui</label>
-                <input class="form-control" type="text" name="quinta"
-                       value="<?= $dado["quinta"] ?? '' ?>">
+            <div class="insere-azul d-flex align-items-center mb-3">
+                <label class="form-label me-3">Qua</label>
+                <input class="form-control"
+                       type="text"
+                       name="quarta"
+                       value="<?= $dado['quarta'] ?? '' ?>">
             </div>
 
-            <div class="insere-azul d-flex align-items-center">
-                <label class="form-label">Sex</label>
-                <input class="form-control" type="text" name="sexta"
-                       value="<?= $dado["sexta"] ?? '' ?>">
+            <div class="insere-azul d-flex align-items-center mb-3">
+                <label class="form-label me-3">Qui</label>
+                <input class="form-control"
+                       type="text"
+                       name="quinta"
+                       value="<?= $dado['quinta'] ?? '' ?>">
             </div>
 
-            <div class="insere-azul d-flex align-items-center">
-                <label class="form-label">Sab</label>
-                <input class="form-control" type="text" name="sabado"
-                       value="<?= $dado["sabado"] ?? '' ?>">
+            <div class="insere-azul d-flex align-items-center mb-3">
+                <label class="form-label me-3">Sex</label>
+                <input class="form-control"
+                       type="text"
+                       name="sexta"
+                       value="<?= $dado['sexta'] ?? '' ?>">
             </div>
 
-            <button class="btn mt-4 insere-azul text-black sem-bordas salvar"
+            <div class="insere-azul d-flex align-items-center mb-3">
+                <label class="form-label me-3">Sáb</label>
+                <input class="form-control"
+                       type="text"
+                       name="sabado"
+                       value="<?= $dado['sabado'] ?? '' ?>">
+            </div>
+
+            <button class="btn mt-3 insere-azul text-black sem-bordas salvar"
                     type="submit">
                 Salvar
             </button>

@@ -1,3 +1,51 @@
+<style>
+.tabela-horario {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tabela-horario th,
+.tabela-horario td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px 5px;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+.tabela-horario th:first-child,
+.tabela-horario td:first-child {
+    width: 70px;
+}
+
+.tabela-horario th:nth-child(2),
+.tabela-horario td:nth-child(2),
+.tabela-horario th:nth-child(3),
+.tabela-horario td:nth-child(3),
+.tabela-horario th:nth-child(4),
+.tabela-horario td:nth-child(4),
+.tabela-horario th:nth-child(5),
+.tabela-horario td:nth-child(5),
+.tabela-horario th:nth-child(6),
+.tabela-horario td:nth-child(6),
+.tabela-horario th:nth-child(7),
+.tabela-horario td:nth-child(7),
+.tabela-horario th:nth-child(8),
+.tabela-horario td:nth-child(8) {
+    width: 110px;
+}
+
+.tabela-horario th:last-child,
+.tabela-horario td:last-child {
+    width: 150px;
+}
+
+.tabela-horario .btn {
+    margin: 2px;
+    white-space: nowrap;
+}
+</style>
+
 <div class="card-header">
     <h3>Tela Horário</h3>
 </div>
@@ -5,10 +53,15 @@
 <div class="card mt-5">
     <div class="card-body">
 
-        <table class="table">
+        <a href="controller.php?acao=editar" class="btn btn-primary mb-4">
+            Agendar Horário
+        </a>
+
+        <table class="table tabela-horario">
 
             <thead>
                 <tr>
+                    <th>Período</th>
                     <th>Dom</th>
                     <th>Seg</th>
                     <th>Ter</th>
@@ -22,28 +75,59 @@
 
             <tbody>
 
-                <?php foreach ($dados as $dado): ?>
+                <?php for ($periodo = 1; $periodo <= 6; $periodo++): ?>
+
+                    <?php
+                    $dadoPeriodo = null;
+
+                    foreach ($dados as $dado) {
+                        if ((int)$dado['periodo'] === $periodo) {
+                            $dadoPeriodo = $dado;
+                            break;
+                        }
+                    }
+                    ?>
 
                     <tr>
 
-                        <td><?= $dado['domingo'] ?></td>
-                        <td><?= $dado['segunda'] ?></td>
-                        <td><?= $dado['terca'] ?></td>
-                        <td><?= $dado['quarta'] ?></td>
-                        <td><?= $dado['quinta'] ?></td>
-                        <td><?= $dado['sexta'] ?></td>
-                        <td><?= $dado['sabado'] ?></td>
+                        <td><?= $periodo ?>º</td>
+
+                        <td><?= $dadoPeriodo['domingo'] ?? '' ?></td>
+                        <td><?= $dadoPeriodo['segunda'] ?? '' ?></td>
+                        <td><?= $dadoPeriodo['terca'] ?? '' ?></td>
+                        <td><?= $dadoPeriodo['quarta'] ?? '' ?></td>
+                        <td><?= $dadoPeriodo['quinta'] ?? '' ?></td>
+                        <td><?= $dadoPeriodo['sexta'] ?? '' ?></td>
+                        <td><?= $dadoPeriodo['sabado'] ?? '' ?></td>
 
                         <td>
-                            <a href="controller.php?acao=editar&id=<?= $dado['id'] ?>">Editar</a>
-                            <a href="controller.php?acao=excluir&id=<?= $dado['id'] ?>">Excluir</a>
-                              
-                            </a>
+
+                            <?php if ($dadoPeriodo): ?>
+
+                                <a href="controller.php?acao=editar&id=<?= $dadoPeriodo['id'] ?>"
+                                   class="btn btn-warning btn-sm">
+                                    Editar
+                                </a>
+
+                                <a href="controller.php?acao=excluir&id=<?= $dadoPeriodo['id'] ?>"
+                                   class="btn btn-danger btn-sm">
+                                    Excluir
+                                </a>
+
+                            <?php else: ?>
+
+                                <a href="controller.php?acao=editar&periodo=<?= $periodo ?>"
+                                   class="btn btn-primary btn-sm">
+                                    Agendar
+                                </a>
+
+                            <?php endif; ?>
+
                         </td>
 
                     </tr>
 
-                <?php endforeach; ?>
+                <?php endfor; ?>
 
             </tbody>
 

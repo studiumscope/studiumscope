@@ -1,0 +1,258 @@
+/* ============================================
+   MÓDULO TRABALHOS - CSS ISOLADO
+   Todas as classes começam com "trab-"
+   ============================================ */
+
+/* ---------- BOTÃO NOVO TRABALHO ---------- */
+.trab-btn-novo {
+    display: inline-block;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.trab-btn-novo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
+    color: #fff;
+}
+
+/* ---------- CONTAINER ---------- */
+.trab-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    padding: 10px 0;
+}
+
+/* ---------- CARD ---------- */
+.trab-card {
+    background: #1e1e2e;
+    border: 1px solid #2d2d44;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.trab-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-color: #6366f1;
+}
+
+/* Card atrasado */
+.trab-card.trab-atrasado {
+    border-left: 5px solid #ef4444 !important;
+}
+
+/* ---------- HEADER DO CARD ---------- */
+.trab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    background: #252538;
+    border-bottom: 1px solid #2d2d44;
+}
+
+.trab-header strong {
+    font-size: 1.05rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Badge da matéria */
+.trab-badge-materia {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* ---------- BODY DO CARD ---------- */
+.trab-body {
+    padding: 18px;
+}
+
+.trab-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.trab-info > div {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+/* Labels em destaque (Entrega, Integrantes...) */
+.trab-info > div:nth-child(odd) {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* Linha separadora */
+.trab-linha {
+    height: 1px;
+    background: #2d2d44;
+    margin: 4px 0;
+}
+
+/* ---------- TAG ATRASADO ---------- */
+.trab-tag-atrasado {
+    display: inline-block;
+    background: #ef4444;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: trabPulse 2s infinite;
+}
+
+@keyframes trabPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* ---------- AÇÕES (EDITAR / EXCLUIR) ---------- */
+.trab-acoes {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #2d2d44;
+}
+
+.trab-acoes a {
+    flex: 1;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.trab-btn-editar {
+    background: #3b82f6;
+    color: #fff;
+}
+
+.trab-btn-editar:hover {
+    background: #2563eb;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.trab-btn-excluir {
+    background: #ef4444;
+    color: #fff;
+}
+
+.trab-btn-excluir:hover {
+    background: #dc2626;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+/* ---------- FORMULÁRIO ---------- */
+.trab-form-header h3 {
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.trab-campo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    background: #1e1e2e;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #2d2d44;
+    transition: border-color 0.2s;
+}
+
+.trab-campo:focus-within {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.trab-campo label {
+    color: #94a3b8;
+    font-weight: 600;
+    min-width: 130px;
+    font-size: 0.9rem;
+}
+
+.trab-campo input,
+.trab-campo textarea,
+.trab-campo select {
+    background: transparent;
+    border: none;
+    color: #fff;
+    flex: 1;
+    padding: 6px 0;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.trab-campo input::placeholder,
+.trab-campo textarea::placeholder {
+    color: #64748b;
+}
+
+.trab-campo textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+/* Botão salvar */
+.trab-btn-salvar {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    margin-top: 16px;
+}
+
+.trab-btn-salvar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
+}
+
+/* ---------- MENSAGEM VAZIA ---------- */
+.trab-vazio {
+    color: #94a3b8;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1rem;
+}

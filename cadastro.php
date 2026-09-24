@@ -1,4 +1,4 @@
-<div class="card mt-5">
+<div class="card mt-5 sem-bordas">
     <div class="card-body">
         <form method="post" action="authController.php?acao=salvar">
             <div class="insere-azul d-flex align-items-center">
@@ -19,7 +19,7 @@
                     value="<?= $dado["senha"] ?? '' ?>" required autofocus>
             </div>
 
-            <button class="btn btn-primary mt-4 bg-transparent text-black sem-bordas" type="submit">Salvar</button>
+            <button class="btn btn-primary mt-4 bg-transparent text-black sem-bordas salvar" type="submit">Salvar</button>
         </form>
     </div>
 </div>

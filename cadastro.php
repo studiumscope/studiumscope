@@ -1,20 +1,25 @@
 <div class="card mt-5">
     <div class="card-body">
         <form method="post" action="authController.php?acao=salvar">
-            
-            <label class="form-label">Nome:</label>
-            <input class="form-control" type="text" name="nome"
-                   value="<?= $dado["nome"] ?? '' ?>" required autofocus>
+            <div class="insere-azul d-flex align-items-center">
+                <label class="form-label">Nome:</label>
+                <input class="form-control" type="text" name="nome"
+                       value="<?= $dado["nome"] ?? '' ?>" required autofocus>
+            </div>
 
-            <label class="form-label">E-mail:</label>
-            <input class="form-control" type="email" name="email"
-                   value="<?= $dado["email"] ?? '' ?>" required autofocus>
+            <div class="insere-azul d-flex align-items-center">
+                <label class="form-label">E-mail:</label>
+                <input class="form-control" type="email" name="email"
+                    value="<?= $dado["email"] ?? '' ?>" required autofocus>
+            </div>
 
-            <label class="form-label">Senha:</label>
-            <input class="form-control" type="password" name="senha"
-                   value="<?= $dado["senha"] ?? '' ?>" required autofocus>
+            <div class="insere-azul d-flex align-items-center">
+                <label class="form-label">Senha:</label>
+                <input class="form-control" type="password" name="senha"
+                    value="<?= $dado["senha"] ?? '' ?>" required autofocus>
+            </div>
 
-            <button class="btn btn-primary mt-4" type="submit">Salvar</button>
+            <button class="btn btn-primary mt-4 bg-transparent text-black sem-bordas" type="submit">Salvar</button>
         </form>
     </div>
 </div>

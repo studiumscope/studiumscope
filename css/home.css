@@ -1,0 +1,639 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body.bodi{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #111;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.home-header {
+    height: 200px;
+    width: 100%;
+
+    padding: 35px 30px 30px 45px;
+
+    position: relative;
+
+    /* Fundo parecido com o da imagem */
+    background:
+        linear-gradient(
+            rgba(0, 190, 215, 0.80),
+            rgba(0, 190, 215, 0.80)
+        ),
+        linear-gradient(
+            120deg,
+            #78b79b 0%,
+            #53b9b1 35%,
+            #29bcd1 70%,
+            #1fb7d1 100%
+        );
+
+    border-bottom: 0;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+/* Título STUDIUM */
+
+.home-header h1 {
+    margin: 20px 0 0 0;
+
+    font-size: 72px;
+    font-weight: 900;
+
+    color: #000;
+
+    line-height: 1;
+}
+
+.user-actions {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    gap: 18px;
+
+    margin-right: 15px;
+}
+
+
+/* Botão + */
+
+.user-actions .btn-primary {
+    order: 2;
+
+    width: 58px;
+    height: 58px;
+
+    padding: 0;
+
+    border-radius: 8px;
+
+    background: #f15bb5;
+    border: 3px solid #9a43e9;
+
+    color: #000;
+
+    font-size: 55px;
+    font-weight: 900;
+
+    line-height: 45px;
+
+    box-shadow: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Avatar */
+
+.profile-avatar {
+    order: 1;
+
+    width: 78px;
+    height: 78px;
+
+    border-radius: 50%;
+
+    background: #ddd;
+
+    border: 4px solid #9349ee;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+}
+
+
+/* Desenha um avatar simples */
+
+.profile-avatar .icon-perfil {
+    width: 30px;
+    height: 30px;
+
+    background: #8b4bed;
+
+    border-radius: 50%;
+
+    position: relative;
+}
+
+.profile-avatar .icon-perfil::after {
+    content: "";
+
+    position: absolute;
+
+    width: 55px;
+    height: 27px;
+
+    background: #8b4bed;
+
+    border-radius: 50% 50% 45% 45%;
+
+    left: 50%;
+    bottom: -24px;
+
+    transform: translateX(-50%);
+}
+
+.dashboard-container {
+    width: 100%;
+
+    min-height: 410px;
+
+    padding: 10px 7% 30px 3%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    column-gap: 60px;
+
+    align-items: start;
+}
+
+/* Menu */
+.card-menu {
+    margin-top: 0;
+
+    padding-top: 0;
+
+    width: 100%;
+}
+
+
+/* tira estilos do bootstrap/browser */
+
+.card-menu ul {
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+.card-menu li {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Cada item */
+
+.card-menu li a {
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    text-decoration: none;
+
+    color: #111;
+
+    font-size: 32px;
+    font-weight: 400;
+
+    border-bottom: 3px solid #111;
+
+    padding-left: 0;
+
+    transition: 0.2s;
+}
+
+
+.card-menu li a:hover {
+    color: #ec63bb;
+    border-color: #ec63bb;
+}
+
+
+ /* ÍCONES DO MENU */
+
+.card-menu .icon {
+    flex: 0 0 58px;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* Disciplinas */
+
+.icon-disciplinas {
+    background: #f5a400;
+    border: 4px solid #12bad0;
+}
+
+.icon-disciplinas::before {
+    content: "≡";
+
+    color: #111;
+
+    font-size: 42px;
+    font-weight: 900;
+
+    transform: rotate(90deg);
+}
+
+
+/* Horário */
+
+.icon-horario {
+    background: #78c74b;
+    border: 4px solid #12bad0;
+}
+
+.icon-horario::before {
+    content: "◷";
+
+    color: #111;
+
+    font-size: 43px;
+    font-weight: bold;
+}
+
+
+/* Trabalhos */
+
+.icon-trabalhos {
+    background: #6545ff;
+    border: 4px solid #12bad0;
+}
+
+.icon-trabalhos::before {
+    content: "✓";
+
+    color: #111;
+
+    font-size: 42px;
+    font-weight: 900;
+}
+
+
+/* Metas */
+
+.icon-metas {
+    background: #ff5caf;
+    border: 4px solid #12bad0;
+}
+
+.icon-metas::before {
+    content: "◎";
+
+    color: #111;
+
+    font-size: 42px;
+    font-weight: 900;
+}
+
+
+/* Progresso */
+
+.icon-progresso {
+    background: #f5a400;
+    border: 4px solid #12bad0;
+}
+
+.icon-progresso::before {
+    content: "↗";
+
+    color: #111;
+
+    font-size: 40px;
+    font-weight: 900;
+}
+
+
+/* Labels */
+
+.card-menu .label {
+    display: block;
+
+    white-space: nowrap;
+}
+
+
+/* Metas e Progresso rosas */
+
+.card-menu li:nth-child(4) a,
+.card-menu li:nth-child(5) a {
+    color: #e965bb;
+
+    border-color: #e965bb;
+}
+
+
+/* CALENDÁRIO */
+
+.card-calendario {
+    width: 100%;
+
+    margin-top: 28px;
+}
+
+
+.card-calendario h2 {
+    margin: 0 0 0 0;
+
+    font-size: 34px;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+/* CARD DO CALENDÁRIO */
+
+.calendario-card {
+    width: 100%;
+
+    min-height: 290px;
+
+    margin-top: 5px;
+
+    position: relative;
+
+    background: #c8d1da;
+
+    padding: 0;
+
+    overflow: hidden;
+}
+
+/* Faixa azul superior */
+
+.calendario-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 130px;
+
+    background: #7bd6e5;
+}
+
+/* Dia da semana */
+
+.weekday {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    z-index: 2;
+
+    font-size: 25px;
+    font-weight: 800;
+}
+
+
+/* Data */
+
+.calendario-card time {
+    position: absolute;
+
+    top: 47px;
+    left: 18px;
+
+    z-index: 2;
+
+    display: flex;
+    align-items: baseline;
+
+    gap: 10px;
+}
+
+
+/* 08 */
+
+.calendario-card .day {
+    font-size: 72px;
+
+    font-weight: 900;
+
+    line-height: 1;
+}
+
+
+/* setembro */
+
+.calendario-card .month {
+    font-size: 35px;
+
+    font-weight: 700;
+}
+
+
+/* PARA HOJE */
+
+.parahoje {
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+
+    top: 150px;
+}
+
+
+.parahoje h3 {
+    margin: 0 0 18px 0;
+
+    font-size: 40px;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+
+.parahoje p {
+    margin: 0;
+
+    height: 58px;
+
+    border-bottom: 3px solid #111;
+
+    border-top: 0;
+
+    font-size: 22px;
+}
+
+
+/* Segunda linha */
+
+.parahoje::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 55px;
+
+    bottom: 0;
+
+    height: 30px;
+
+    border-bottom: 3px solid #111;
+}
+
+
+/* BOTÃO ENTRAR */
+
+.calendario-card > .btn-primary {
+    position: absolute;
+
+    right: 0;
+    bottom: 14px;
+
+    width: 70px;
+    height: 45px;
+
+    padding: 0;
+
+    border-radius: 25px;
+
+    border: none;
+
+    background: #12bad0;
+
+    color: #111;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: none;
+}
+
+
+/* COISAS DO BOOTSTRAP */
+
+.btn-primary {
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-bg: transparent;
+    --bs-btn-hover-border-color: transparent;
+
+    box-shadow: none !important;
+}
+
+
+.btn-primary:focus,
+.btn-primary:active {
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .home-header {
+        height: 230px;
+
+        padding: 25px;
+    }
+
+    .home-header h1 {
+        font-size: 50px;
+        margin-top: 40px;
+    }
+
+    .dashboard-container {
+        grid-template-columns: 1fr;
+
+        padding: 20px 30px;
+    }
+
+    .card-calendario {
+        margin-top: 40px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .home-header {
+        height: 180px;
+    }
+
+    .home-header h1 {
+        font-size: 38px;
+    }
+
+    .profile-avatar {
+        width: 55px;
+        height: 55px;
+    }
+
+    .user-actions .btn-primary {
+        width: 45px;
+        height: 45px;
+
+        font-size: 40px;
+    }
+
+    .card-menu li a {
+        font-size: 24px;
+    }
+
+    .card-menu .icon {
+        width: 45px;
+        height: 45px;
+        flex-basis: 45px;
+    }
+
+    .calendario-card .day {
+        font-size: 55px;
+    }
+
+    .calendario-card .month {
+        font-size: 25px;
+    }
+
+    .weekday {
+        font-size: 18px;
+    }
+
+    .parahoje h3 {
+        font-size: 30px;
+    }
+}

@@ -1,0 +1,60 @@
+:root{
+  --text-color: #000000;
+  --bg: #d8d9da02;
+  --bg-label: #3198ff;
+  --font: mono;
+  --border: 40px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+label {
+  white-space: nowrap;
+}
+
+body{
+  background-color: #6cb6ff;
+}
+
+/* esse funciona */
+div.card{
+  background-color: var(--bg);
+}
+
+.form-control {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.sem-bordas{
+  border: none;
+}
+
+.salvar{
+  float: right;
+}
+
+.insere-azul{
+  background-color: var(--bg-label);
+  padding: 8px;
+  border-radius: 20px ;
+  margin-bottom: 50px;
+}
+
+button.insere-azul{
+  margin: 0px;
+}
+.insere-azul label{
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.insere-azul input{
+  background-color: var(--bg-label);
+}
+
+.insere-azul input.contatos{
+  height: 100px;
+}
+

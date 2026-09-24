@@ -57,7 +57,7 @@ $hoje = date('Y-m-d');
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../css/calendario.css">
+    <link rel="stylesheet" href="/css/calendario.css">
 </head>
 
 <body>

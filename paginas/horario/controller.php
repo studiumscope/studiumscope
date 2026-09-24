@@ -31,7 +31,7 @@ class controller {
     public function index() {
         $pdo = getConnection();
        
-        $sql = "SELECT * FROM controller ORDER BY id";
+        $sql = "SELECT * FROM horario ORDER BY id";
         $stmt = $pdo->query($sql);
         $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -58,7 +58,7 @@ class controller {
 
         if ($id == '') {
 
-            $sql = "INSERT INTO controller
+            $sql = "INSERT INTO horario
                     (domingo, segunda, terca, quarta, quinta, sexta, sabado)
                     VALUES
                     (:domingo, :segunda, :terca, :quarta, :quinta, :sexta, :sabado)";
@@ -77,7 +77,7 @@ class controller {
 
         } else {
 
-            $sql = "UPDATE controller SET
+            $sql = "UPDATE horario SET
                         domingo = :domingo,
                         segunda = :segunda,
                         terca = :terca,
@@ -110,7 +110,7 @@ class controller {
     public function editar() {
         $pdo = getConnection();
         $id = $_GET['id'] ?? '';
-        $sql = "SELECT * FROM controller WHERE id = :id";
+        $sql = "SELECT * FROM horario WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':id' => $id
@@ -119,7 +119,7 @@ class controller {
 
 
         include __DIR__ . "cabecalho.php";
-        include "formcontroller.php";
+        include "form.php";
         include __DIR__ . "_rodape.php";
     }
 
@@ -128,7 +128,7 @@ class controller {
 
         $pdo = getConnection();
         $id = $_GET['id'] ?? '';
-        $sql = "DELETE FROM controller WHERE id = :id";
+        $sql = "DELETE FROM horario WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':id' => $id

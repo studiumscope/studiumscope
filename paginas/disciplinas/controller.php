@@ -14,7 +14,7 @@ class DisciplinasController {
     }
 
     public function novo() {
-        $dado = [];
+        $dado = []; // Instancia array vazio para o form.php não dar erro
         include __DIR__ . "../../../_cabecalho.php";
         include "form.php";
         include __DIR__ . "../../../_rodape.php";
@@ -42,12 +42,11 @@ class DisciplinasController {
         $id = $_POST['id'] ?? '';
 
         if (empty($id)) {
-        
+            // INSERT para Supabase / PostgreSQL
             $stmt = $pdo->prepare("INSERT INTO disciplinas
-                                   (nome materia, professor, contatos, nota_atual, nota_necessaria)
-                                   VALUES (nome :materia, :professor, :contatos, :nota_atual, :nota_necessaria)");
+                                   (materia, professor, contatos, nota_atual, nota_necessaria)
+                                   VALUES (:materia, :professor, :contatos, :nota_atual, :nota_necessaria)");
             $stmt->execute([
-                ':nome'         => "",
                 ':materia'         => $_POST['materia'] ?? '',
                 ':professor'       => $_POST['professor'] ?? '',
                 ':contatos'        => $_POST['contatos'] ?? '',
@@ -55,9 +54,8 @@ class DisciplinasController {
                 ':nota_necessaria' => $_POST['nota_necessaria'] ?? 0
             ]);
         } else {
-            
+            // UPDATE para Supabase / PostgreSQL (vírgula corrigida em nota_atual)
             $stmt = $pdo->prepare("UPDATE disciplinas SET
-                                    nome = :nome,
                                     materia = :materia,
                                     professor = :professor,
                                     contatos = :contatos,
@@ -65,7 +63,6 @@ class DisciplinasController {
                                     nota_necessaria = :nota_necessaria
                                     WHERE id = :id");
             $stmt->execute([
-                ':nome'         => "",
                 ':materia'         => $_POST['materia'] ?? '',
                 ':professor'       => $_POST['professor'] ?? '',
                 ':contatos'        => $_POST['contatos'] ?? '',
@@ -92,6 +89,7 @@ class DisciplinasController {
     }
 }
 
+// Instanciação e Roteamento
 $controller = new DisciplinasController();
 
 $acao = $_GET['acao'] ?? 'index';

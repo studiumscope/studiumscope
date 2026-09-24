@@ -1,6 +1,6 @@
 <?php 
 
-require_once 'db.php'; 
+require_once __DIR__ . 'db.php'; 
 
 $controller = new HorarioController(); 
 
@@ -35,8 +35,8 @@ class HorarioController {
         $stmt = $pdo->query($sql);
         $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        include "_cabecalho.php";
-        include "lista.php";
+        include __DIR__ . "_cabecalho.php";
+        include __DIR__ . "lista.php";
         include "_rodape.php";
     }
 
@@ -118,9 +118,9 @@ class HorarioController {
         $dado = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-        include "cabecalho.php";
+        include __DIR__ . "cabecalho.php";
         include "formHorario.php";
-        include "_rodape.php";
+        include __DIR__ . "_rodape.php";
     }
 
 

@@ -1,7 +1,6 @@
 <a href="?acao=novo" class="trab-btn-novo">Novo Trabalho</a>
 
 <?php
-// Helper: verifica se a entrega já passou
 function estaAtrasado($data) {
     return strtotime($data) < strtotime(date('Y-m-d'));
 }

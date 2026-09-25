@@ -5,7 +5,10 @@ class DisciplinasController {
 
     public function index() {
         $pdo = getConnection();
-        $stmt = $pdo->query("SELECT * FROM disciplinas ORDER BY id DESC");
+        $id_usuario = $_SESSION['usuario_id'];
+        
+        $stmt = $pdo->prepare("SELECT * FROM disciplinas WHERE id_usuario = :id_usuario ORDER BY id DESC");
+        $stmt->execute([':id_usuario' => $id_usuario]);
         $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         include __DIR__ . "../../../_cabecalho.php";
@@ -14,7 +17,7 @@ class DisciplinasController {
     }
 
     public function novo() {
-        $dado = []; // Instancia array vazio para o form.php não dar erro
+        $dado = []; 
         include __DIR__ . "../../../_cabecalho.php";
         include "form.php";
         include __DIR__ . "../../../_rodape.php";
@@ -28,8 +31,13 @@ class DisciplinasController {
         }
 
         $pdo = getConnection();
-        $stmt = $pdo->prepare("SELECT * FROM disciplinas WHERE id = :id");
-        $stmt->execute([':id' => $id]);
+        $id_usuario = $_SESSION['usuario_id'];
+        
+        $stmt = $pdo->prepare("SELECT * FROM disciplinas WHERE id = :id AND id_usuario = :id_usuario");
+        $stmt->execute([
+            ':id' => $id,
+            ':id_usuario' => $id_usuario
+        ]);
         $dado = $stmt->fetch(PDO::FETCH_ASSOC);
 
         include __DIR__ . "../../../_cabecalho.php";
@@ -39,36 +47,37 @@ class DisciplinasController {
 
     public function salvar() {
         $pdo = getConnection();
+        $id_usuario = $_SESSION['usuario_id'];
         $id = $_POST['id'] ?? '';
 
         if (empty($id)) {
-            // INSERT para Supabase / PostgreSQL
             $stmt = $pdo->prepare("INSERT INTO disciplinas
-                                   (materia, professor, contatos, nota_atual, nota_necessaria)
-                                   VALUES (:materia, :professor, :contatos, :nota_atual, :nota_necessaria)");
-            $stmt->execute([
-                ':materia'         => $_POST['materia'] ?? '',
-                ':professor'       => $_POST['professor'] ?? '',
-                ':contatos'        => $_POST['contatos'] ?? '',
-                ':nota_atual'      => $_POST['nota_atual'] ?? 0,
-                ':nota_necessaria' => $_POST['nota_necessaria'] ?? 0
-            ]);
-        } else {
-            // UPDATE para Supabase / PostgreSQL (vírgula corrigida em nota_atual)
-            $stmt = $pdo->prepare("UPDATE disciplinas SET
-                                    materia = :materia,
-                                    professor = :professor,
-                                    contatos = :contatos,
-                                    nota_atual = :nota_atual,
-                                    nota_necessaria = :nota_necessaria
-                                    WHERE id = :id");
+                                   (materia, professor, contatos, nota_atual, nota_necessaria, id_usuario)
+                                   VALUES (:materia, :professor, :contatos, :nota_atual, :nota_necessaria, :id_usuario)");
             $stmt->execute([
                 ':materia'         => $_POST['materia'] ?? '',
                 ':professor'       => $_POST['professor'] ?? '',
                 ':contatos'        => $_POST['contatos'] ?? '',
                 ':nota_atual'      => $_POST['nota_atual'] ?? 0,
                 ':nota_necessaria' => $_POST['nota_necessaria'] ?? 0,
-                ':id'              => $id
+                ':id_usuario'      => $id_usuario
+            ]);
+        } else {
+            $stmt = $pdo->prepare("UPDATE disciplinas SET
+                                    materia = :materia,
+                                    professor = :professor,
+                                    contatos = :contatos,
+                                    nota_atual = :nota_atual,
+                                    nota_necessaria = :nota_necessaria
+                                    WHERE id = :id AND id_usuario = :id_usuario");
+            $stmt->execute([
+                ':materia'         => $_POST['materia'] ?? '',
+                ':professor'       => $_POST['professor'] ?? '',
+                ':contatos'        => $_POST['contatos'] ?? '',
+                ':nota_atual'      => $_POST['nota_atual'] ?? 0,
+                ':nota_necessaria' => $_POST['nota_necessaria'] ?? 0,
+                ':id'              => $id,
+                ':id_usuario'      => $id_usuario
             ]);
         }
 
@@ -80,8 +89,13 @@ class DisciplinasController {
         $id = $_GET['id'] ?? null;
         if ($id) {
             $pdo = getConnection();
-            $stmt = $pdo->prepare("DELETE FROM disciplinas WHERE id = :id");
-            $stmt->execute([':id' => $id]);
+            $id_usuario = $_SESSION['usuario_id'];
+            
+            $stmt = $pdo->prepare("DELETE FROM disciplinas WHERE id = :id AND id_usuario = :id_usuario");
+            $stmt->execute([
+                ':id' => $id,
+                ':id_usuario' => $id_usuario
+            ]);
         }
 
         header("Location: ?acao=index");
@@ -89,7 +103,6 @@ class DisciplinasController {
     }
 }
 
-// Instanciação e Roteamento
 $controller = new DisciplinasController();
 
 $acao = $_GET['acao'] ?? 'index';

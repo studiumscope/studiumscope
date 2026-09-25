@@ -3,18 +3,21 @@ require_once __DIR__ . '/../../db.php';
 
 class TrabalhosController
 {
-
     public function index()
     {
         $pdo = getConnection();
-        // No controller, antes do query:
+        $id_usuario = $_SESSION['usuario_id'];
+        
         $filtro = $_GET['filtro'] ?? 'todos';
-        $sql = "SELECT * FROM trabalhos";
+        
+        $sql = "SELECT * FROM trabalhos WHERE id_usuario = :id_usuario";
         if ($filtro === 'atrasados') {
-            $sql .= " WHERE data_entrega < CURRENT_DATE";
+            $sql .= " AND data_entrega < CURRENT_DATE";
         }
         $sql .= " ORDER BY data_entrega ASC";
-        $stmt = $pdo->query("SELECT * FROM trabalhos ORDER BY data_entrega ASC");
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':id_usuario' => $id_usuario]);
         $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         include __DIR__ . "../../../_cabecalho.php";
@@ -39,8 +42,13 @@ class TrabalhosController
         }
 
         $pdo = getConnection();
-        $stmt = $pdo->prepare("SELECT * FROM trabalhos WHERE id = :id");
-        $stmt->execute([':id' => $id]);
+        $id_usuario = $_SESSION['usuario_id'];
+        
+        $stmt = $pdo->prepare("SELECT * FROM trabalhos WHERE id = :id AND id_usuario = :id_usuario");
+        $stmt->execute([
+            ':id' => $id,
+            ':id_usuario' => $id_usuario
+        ]);
         $dado = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$dado) {
@@ -56,36 +64,37 @@ class TrabalhosController
     public function salvar()
     {
         $pdo = getConnection();
+        $id_usuario = $_SESSION['usuario_id'];
         $id = $_POST['id'] ?? '';
 
         if (empty($id)) {
-
             $stmt = $pdo->prepare("INSERT INTO trabalhos
-                                   (titulo, materia, integrantes, data_entrega, descricao)
-                                   VALUES (:titulo, :materia, :integrantes, :data_entrega, :descricao)");
-            $stmt->execute([
-                ':titulo'       => $_POST['titulo'] ?? '',
-                ':materia'      => $_POST['materia'] ?? '',
-                ':integrantes'  => $_POST['integrantes'] ?? '',
-                ':data_entrega' => $_POST['data_entrega'] ?? date('Y-m-d'),
-                ':descricao'    => $_POST['descricao'] ?? ''
-            ]);
-        } else {
-
-            $stmt = $pdo->prepare("UPDATE trabalhos SET
-                                    titulo = :titulo,
-                                    materia = :materia,
-                                    integrantes = :integrantes,
-                                    data_entrega = :data_entrega,
-                                    descricao = :descricao
-                                    WHERE id = :id");
+                                   (titulo, materia, integrantes, data_entrega, descricao, id_usuario)
+                                   VALUES (:titulo, :materia, :integrantes, :data_entrega, :descricao, :id_usuario)");
             $stmt->execute([
                 ':titulo'       => $_POST['titulo'] ?? '',
                 ':materia'      => $_POST['materia'] ?? '',
                 ':integrantes'  => $_POST['integrantes'] ?? '',
                 ':data_entrega' => $_POST['data_entrega'] ?? date('Y-m-d'),
                 ':descricao'    => $_POST['descricao'] ?? '',
-                ':id'           => $id
+                ':id_usuario'   => $id_usuario
+            ]);
+        } else {
+            $stmt = $pdo->prepare("UPDATE trabalhos SET
+                                    titulo = :titulo,
+                                    materia = :materia,
+                                    integrantes = :integrantes,
+                                    data_entrega = :data_entrega,
+                                    descricao = :descricao
+                                    WHERE id = :id AND id_usuario = :id_usuario");
+            $stmt->execute([
+                ':titulo'       => $_POST['titulo'] ?? '',
+                ':materia'      => $_POST['materia'] ?? '',
+                ':integrantes'  => $_POST['integrantes'] ?? '',
+                ':data_entrega' => $_POST['data_entrega'] ?? date('Y-m-d'),
+                ':descricao'    => $_POST['descricao'] ?? '',
+                ':id'           => $id,
+                ':id_usuario'   => $id_usuario
             ]);
         }
 
@@ -98,15 +107,19 @@ class TrabalhosController
         $id = $_GET['id'] ?? null;
         if ($id) {
             $pdo = getConnection();
-            $stmt = $pdo->prepare("DELETE FROM trabalhos WHERE id = :id");
-            $stmt->execute([':id' => $id]);
+            $id_usuario = $_SESSION['usuario_id'];
+            
+            $stmt = $pdo->prepare("DELETE FROM trabalhos WHERE id = :id AND id_usuario = :id_usuario");
+            $stmt->execute([
+                ':id' => $id,
+                ':id_usuario' => $id_usuario
+            ]);
         }
 
         header("Location: ?acao=index");
         exit;
     }
 }
-
 
 $controller = new TrabalhosController();
 

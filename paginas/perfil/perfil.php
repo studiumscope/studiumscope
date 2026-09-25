@@ -1,65 +1,57 @@
-<?php
-session_start();
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../../authController.php?acao=login");
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUD+ Premium - STUDIUM</title>
+    <title>Editar Perfil - STUDIUM</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/premium.css" rel="stylesheet">
+    <link href="../../css/perfil.css" rel="stylesheet">
 </head>
-<body class="premium-body bg-light">
+<body class="perfil-body bg-light">
 
-    <header class="premium-header text-center mt-5 mb-5">
-        <h1 class="premium-title display-5 fw-bold">Descubra o STUD+</h1>
-        <nav class="premium-nav mt-3">
+    <header class="perfil-header text-center mt-4 mb-4">
+        <h1 class="perfil-title">Meu Perfil</h1>
+        <nav class="perfil-nav mt-2">
             <a href="../../home.php" class="btn btn-outline-secondary btn-voltar">Voltar ao Início</a>
         </nav>
     </header>
 
-    <main class="premium-container container">
-        <section class="planos-section text-center mb-5">
-            <h2 class="section-subtitle h3 mb-3">Escolha o melhor plano para os seus estudos</h2>
-            <p class="section-desc text-muted mb-5">Desbloqueie ferramentas exclusivas para atingir as suas metas mais rápido!</p>
+    <main class="perfil-container container" style="max-width: 600px;">
+        
+        <section class="perfil-edicao card shadow-sm p-4 mb-4">
+            <h2 class="section-title h4 mb-4">Editar Meus Dados</h2>
+            
+            <?php if (!empty($mensagem)): ?>
+                <div class="alerta-sucesso alert alert-success" role="alert">
+                    <strong><?php echo $mensagem; ?></strong>
+                </div>
+            <?php endif; ?>
 
-            <div class="row justify-content-center gap-4">
+            <form action="controller.php" method="POST" class="form-perfil">
+                <div class="form-group mb-3">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" id="nome" name="nome" class="form-control input-nome" value="<?php echo htmlspecialchars($usuario['nome'] ?? ''); ?>" required>
+                </div>
                 
-                <article class="card-plano plano-basico col-md-5 card shadow-sm p-4">
-                    <h3 class="plano-title h4">Plano Básico</h3>
-                    <p class="plano-preco fs-5 mb-4"><strong>Gratuito</strong></p>
-                    
-                    <ul class="plano-features list-unstyled text-start mb-4 mx-auto" style="max-width: 250px;">
-                        <li class="mb-2">Gestão de Disciplinas</li>
-                        <li class="mb-2">Quadro de Horários</li>
-                        <li class="mb-2">Controle de Trabalhos</li>
-                        <li class="mb-2">Acesso ao Calendário</li>
-                    </ul>
-                    
-                    <button type="button" class="btn btn-secondary mt-auto btn-plano" disabled>O seu plano atual</button>
-                </article>
-
-                <article class="card-plano plano-premium col-md-5 card shadow p-4 border border-primary border-2">
-                    <h3 class="plano-title h4 text-primary">STUD+ (Premium)</h3>
-                    <p class="plano-preco fs-5 mb-4 text-primary"><strong>R$ 9,90 / mês</strong></p>
-                    
-                    <ul class="plano-features list-unstyled text-start mb-4 mx-auto" style="max-width: 250px;">
-                        <li class="mb-2">Tudo do Plano Básico</li>
-                        <li class="mb-2"><strong>Metas:</strong> Defina objetivos</li>
-                        <li class="mb-2"><strong>Progresso:</strong> Estatísticas reais</li>
-                        <li class="mb-2">Sem anúncios</li>
-                    </ul>
-                    
-                    <button type="button" class="btn btn-primary mt-auto btn-plano">Assinar STUD+</button>
-                </article>
-
-            </div>
+                <div class="form-group mb-3">
+                    <label for="email" class="form-label">E-mail:</label>
+                    <input type="email" id="email" name="email" class="form-control input-email" value="<?php echo htmlspecialchars($usuario['email'] ?? ''); ?>" required>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label for="senha" class="form-label">Nova Senha <small class="text-muted">(deixe em branco para manter a atual)</small>:</label>
+                    <input type="password" id="senha" name="senha" class="form-control input-senha">
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100 btn-salvar">Salvar Alterações</button>
+            </form>
         </section>
+
+        <section class="perfil-opcoes card shadow-sm p-4 text-center">
+            <h2 class="section-title h5 mb-3">Opções da Conta</h2>
+            <a href="../../authController.php?acao=sair" class="btn btn-danger btn-sair">Sair / Terminar Sessão</a>
+        </section>
+
     </main>
 
 </body>

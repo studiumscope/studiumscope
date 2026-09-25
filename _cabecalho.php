@@ -7,8 +7,8 @@
     <title>Studium</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/stylesheet.css" rel="stylesheet">
-    <link href="/php/studiumscope/css/disciplinas.css" rel="stylesheet">
-    <link href="/php/studiumscope/css/trabalhos.css" rel="stylesheet">
+    <link href="../../css/disciplinas.css" rel="stylesheet">
+    <link href="../../css/trabalhos.css" rel="stylesheet">
 </head>
 
 <body>

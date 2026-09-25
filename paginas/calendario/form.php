@@ -1,207 +1,81 @@
 <?php
-
+$evento = $evento ?? null;
 $editando = $evento !== null;
 
-$titulo = $evento['titulo'] ?? '';
-$descricao = $evento['descricao'] ?? '';
-$dataEvento = $evento['data_evento'] ?? $data;
-$hora = $evento['hora'] ?? '';
-$tipo = $evento['tipo'] ?? '';
-
+$titulo     = $evento['titulo']      ?? '';
+$descricao  = $evento['descricao']   ?? '';
+$dataEvento = $evento['data_evento'] ?? ($data ?? date('Y-m-d'));
+$hora       = $evento['hora']        ?? '';
+$tipo       = $evento['tipo']        ?? '';
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<div class="cal-form-wrapper">
+    <div class="cal-form-card">
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>
-        <?= $editando ? 'Editar evento' : 'Novo evento' ?>
-    </title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="/css/calendario.css">
-</head>
-
-<body>
-
-<div class="form-container">
-
-    <div class="form-card">
-
-        <a
-            href="controller.php?acao=index&mes=<?= date('Y-m', strtotime($dataEvento)) ?>"
-            class="form-voltar"
-        >
+        <a href="?acao=index&mes=<?= date('Y-m', strtotime($dataEvento)) ?>" class="cal-form-voltar">
             ← Voltar para o calendário
         </a>
 
-        <div class="form-header">
-
+        <div class="cal-form-header">
             <span>CALENDÁRIO</span>
-
-            <h1>
-                <?= $editando ? 'Editar evento' : 'Novo evento' ?>
-            </h1>
-
-            <p>
-                Adicione uma informação importante ao seu calendário.
-            </p>
-
+            <h1><?= $editando ? 'Editar Evento' : 'Novo Evento' ?></h1>
+            <p>Adicione uma informação importante ao seu calendário.</p>
         </div>
 
         <?php if (isset($_GET['erro'])): ?>
-
-            <div class="alert alert-danger">
-                Preencha o título, a data e o tipo do evento.
-            </div>
-
+            <div class="cal-alerta">Preencha o título, a data e o tipo do evento.</div>
         <?php endif; ?>
 
-
-        <form
-            action="controller.php?acao=salvar"
-            method="POST"
-        >
+        <form action="?acao=salvar" method="POST">
 
             <?php if ($editando): ?>
-
-                <input
-                    type="hidden"
-                    name="id"
-                    value="<?= $evento['id'] ?>"
-                >
-
+                <input type="hidden" name="id" value="<?= htmlspecialchars((string) ($evento['id'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
             <?php endif; ?>
 
-
-            <div class="campo">
-
-                <label for="titulo">
-                    Título
-                </label>
-
-                <input
-                    type="text"
-                    id="titulo"
-                    name="titulo"
-                    value="<?= htmlspecialchars($titulo) ?>"
-                    placeholder="Ex.: Prova de Matemática"
-                    maxlength="150"
-                    required
-                >
-
+            <div class="cal-campo">
+                <label>Título</label>
+                <input type="text" name="titulo"
+                       value="<?= htmlspecialchars($titulo) ?>"
+                       placeholder="Ex.: Prova de Matemática" maxlength="150" required autofocus>
             </div>
 
-
-            <div class="campo">
-
-                <label for="descricao">
-                    Descrição
-                </label>
-
-                <textarea
-                    id="descricao"
-                    name="descricao"
-                    placeholder="Adicione os detalhes do evento..."
-                    rows="4"
-                ><?= htmlspecialchars($descricao) ?></textarea>
-
+            <div class="cal-campo">
+                <label>Descrição</label>
+                <textarea name="descricao" rows="4"
+                          placeholder="Adicione os detalhes do evento..."><?= htmlspecialchars($descricao) ?></textarea>
             </div>
 
-
-            <div class="campo">
-
-                <label for="data_evento">
-                    Data
-                </label>
-
-                <input
-                    type="date"
-                    id="data_evento"
-                    name="data_evento"
-                    value="<?= htmlspecialchars($dataEvento) ?>"
-                    required
-                >
-
+            <div class="cal-campo">
+                <label>Data</label>
+                <input type="date" name="data_evento"
+                       value="<?= htmlspecialchars($dataEvento) ?>" required>
             </div>
 
-
-            <div class="form-linha">
-
-                <div class="campo">
-
-                    <label for="hora">
-                        Horário
-                    </label>
-
-                    <input
-                        type="time"
-                        id="hora"
-                        name="hora"
-                        value="<?= htmlspecialchars($hora) ?>"
-                    >
-
+            <div class="cal-form-linha">
+                <div class="cal-campo">
+                    <label>Horário</label>
+                    <input type="time" name="hora" value="<?= htmlspecialchars($hora) ?>">
                 </div>
 
-
-                <div class="campo">
-
-                    <label for="tipo">
-                        Tipo
-                    </label>
-
-                    <select
-                        id="tipo"
-                        name="tipo"
-                        required
-                    >
-
-                        <option value="">
-                            Selecione
-                        </option>
-
-                        <option value="Prova" <?= $tipo === 'Prova' ? 'selected' : '' ?>>
-                            Prova
-                        </option>
-
-                        <option value="Trabalho" <?= $tipo === 'Trabalho' ? 'selected' : '' ?>>
-                            Trabalho
-                        </option>
-
-                        <option value="Tarefa" <?= $tipo === 'Tarefa' ? 'selected' : '' ?>>
-                            Tarefa
-                        </option>
-
-                        <option value="Outro" <?= $tipo === 'Outro' ? 'selected' : '' ?>>
-                            Outro
-                        </option>
-
+                <div class="cal-campo">
+                    <label>Tipo</label>
+                    <select name="tipo" required>
+                        <option value="">Selecione</option>
+                        <option value="Prova"    <?= $tipo === 'Prova'    ? 'selected' : '' ?>>Prova</option>
+                        <option value="Trabalho" <?= $tipo === 'Trabalho' ? 'selected' : '' ?>>Trabalho</option>
+                        <option value="Tarefa"   <?= $tipo === 'Tarefa'   ? 'selected' : '' ?>>Tarefa</option>
+                        <option value="Outro"    <?= $tipo === 'Outro'    ? 'selected' : '' ?>>Outro</option>
                     </select>
-
                 </div>
-
             </div>
 
-
-            <button
-                type="submit"
-                class="btn-salvar"
-            >
-                <?= $editando ? 'Salvar alterações' : 'Adicionar ao calendário' ?>
-            </button>
+            <div class="cal-form-acoes">
+                <a href="?acao=index" class="cal-btn-cancelar">Cancelar</a>
+                <button type="submit" class="cal-btn-salvar">
+                    <?= $editando ? 'Salvar' : 'Adicionar' ?>
+                </button>
+            </div>
 
         </form>
-
     </div>
-
 </div>
-
-</body>
-
-</html>

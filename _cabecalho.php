@@ -9,6 +9,7 @@
     <link href="/css/stylesheet.css" rel="stylesheet">
     <link href="../../css/disciplinas.css" rel="stylesheet">
     <link href="../../css/trabalhos.css" rel="stylesheet">
+    <link href="../../css/calendario.css" rel="stylesheet">
 </head>
 
 <body>

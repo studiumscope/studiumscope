@@ -1,0 +1,133 @@
+body {
+    background-color: #8ce1ec;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Títulos das páginas */
+h1, .titulo-pagina {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Estilo comum para botões (Voltar, Salvar, +) */
+.btn-voltar, .btn-salvar, .btn-adicionar {
+    background-color: #17c3d9;
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.btn-voltar {
+    width: 60px;
+    height: 60px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.btn-salvar {
+    width: 70px;
+    height: 70px;
+    font-weight: bold;
+}
+
+.btn-adicionar {
+    font-size: 40px;
+    background: transparent;
+    color: #17c3d9;
+    font-weight: bold;
+}
+
+.btn-voltar:hover, .btn-salvar:hover {
+    background-color: #12a8bb;
+}
+
+/* Cartões de listagem (Listas de Trabalhos/Tarefas) */
+.lista-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.cartao-item {
+    background-color: #17c3d9;
+    border-radius: 30px;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    min-height: 120px;
+}
+
+.cartao-item .icone-principal {
+    width: 80px;
+    height: auto;
+}
+
+.cartao-item .conteudo-esq {
+    flex: 1;
+}
+
+.cartao-item .conteudo-dir {
+    flex: 2;
+    font-size: 14px;
+}
+
+.cartao-item h2 {
+    margin: 0 0 5px 0;
+    font-size: 22px;
+}
+
+.cartao-item .icone-lixo {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.cartao-item .icone-lixo:hover {
+    color: #ff4d4d;
+}
+
+/* Formulários (Ecrãs de Cadastro) */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin-top: 30px;
+}
+
+.form-input {
+    background-color: #17c3d9;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 25px;
+    font-size: 16px;
+    color: #000;
+    width: 100%;
+    outline: none;
+}
+
+.form-input::placeholder {
+    color: #000;
+}
+
+.form-textarea {
+    border-radius: 20px;
+    min-height: 150px;
+    resize: none;
+}

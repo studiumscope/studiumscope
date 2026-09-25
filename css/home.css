@@ -14,7 +14,6 @@ body.bodi{
     color: #111;
 }
 
-
 /* =========================================================
    HEADER
 ========================================================= */
@@ -48,20 +47,36 @@ body.bodi{
     justify-content: space-between;
 }
 
+/* =========================================================
+   TÍTULO E SAUDAÇÃO
+========================================================= */
+
+.titulo-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+/* Estilização do Olá */
+.saudacao {
+    margin: 0 0 0 3px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111; 
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+}
 
 /* Título STUDIUM */
-
 .home-header h1 {
-    margin: 20px 0 0 0;
-
+    margin: 0;
     font-size: 72px;
     font-weight: 900;
-
     color: #000;
-
     line-height: 1;
 }
 
+/* Ações do Utilizador (Avatar e Botão +) */
 .user-actions {
     display: flex;
     flex-direction: column;
@@ -572,9 +587,16 @@ body.bodi{
         padding: 25px;
     }
 
+    .titulo-grupo {
+        margin-top: 15px;
+    }
+
+    .saudacao {
+        font-size: 19px;
+    }
+
     .home-header h1 {
         font-size: 50px;
-        margin-top: 40px;
     }
 
     .dashboard-container {
@@ -593,6 +615,15 @@ body.bodi{
 
     .home-header {
         height: 180px;
+        padding: 20px;
+    }
+
+    .titulo-grupo {
+        margin-top: 10px;
+    }
+
+    .saudacao {
+        font-size: 16px;
     }
 
     .home-header h1 {

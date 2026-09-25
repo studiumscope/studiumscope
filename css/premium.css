@@ -1,0 +1,50 @@
+body.premium-body {
+    background-color: #1a1a2e;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.premium-title {
+    color: #ff4785;
+    text-shadow: 0 0 10px rgba(255, 71, 133, 0.5);
+    font-weight: 800;
+}
+
+/* Cartão Premium com efeito Glow (Brilho) */
+.card-plano.plano-premium {
+    background: linear-gradient(145deg, #2a1b38 0%, #1a1a2e 100%);
+    border: 2px solid #ff4785 !important;
+    box-shadow: 0 0 20px rgba(255, 71, 133, 0.4), inset 0 0 10px rgba(255, 71, 133, 0.2);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+    border-radius: 20px;
+}
+
+.card-plano.plano-premium:hover {
+    box-shadow: 0 0 30px rgba(255, 71, 133, 0.7), inset 0 0 15px rgba(255, 71, 133, 0.3);
+    transform: scale(1.07);
+}
+
+.plano-premium .plano-title, 
+.plano-premium .plano-preco {
+    color: #ff7eb3 !important;
+}
+
+/* Botão de assinar brilhante */
+.plano-premium .btn-plano {
+    background: linear-gradient(45deg, #ff4785, #ff7eb3);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 30px;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 71, 133, 0.5);
+    transition: 0.3s;
+}
+
+.plano-premium .btn-plano:hover {
+    background: linear-gradient(45deg, #ff7eb3, #ff4785);
+    box-shadow: 0 6px 20px rgba(255, 71, 133, 0.8);
+}

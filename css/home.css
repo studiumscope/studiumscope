@@ -314,6 +314,23 @@ body.bodi{
     font-weight: 900;
 }
 
+/* Tarefas */
+.icon-tarefas {
+    background: #ff5caf; /* Fundo rosa combinando com a cor do texto */
+    border: 4px solid #12bad0; /* Borda padrão ciano */
+}
+
+.icon-tarefas::before {
+    content: "✎"; /* Símbolo de lápis. Se preferir checklist, use "☑" */
+    color: #111;
+    font-size: 42px;
+    font-weight: 900;
+    
+    /* Pequeno ajuste para o lápis ficar bem centrado */
+    display: block;
+    transform: rotate(-45deg); /* Deixa o lápis com a ponta para baixo */
+}
+
 
 /* Metas */
 

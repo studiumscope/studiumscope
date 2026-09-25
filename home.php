@@ -13,7 +13,7 @@
         <h1>STUDIUM</h1>
         
         <div class="user-actions">
-            <a class="btn btn-primary" href="paginas/premium.php" aria-label="STUD+">+</a>
+            <a class="btn btn-primary" href="paginas/premium/premium.php" aria-label="STUD+">+</a>
             <a href="paginas/perfil/perfil.php" class="profile-avatar">
                 <span class="icon icon-perfil" aria-hidden="true"></span>
             </a>

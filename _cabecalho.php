@@ -28,11 +28,6 @@
                         <a class="nav-link active" aria-current="page" href="../../../index.php">Início</a>
                     </li>
                 </ul>
-
-
-                    Usuário: usuário <a href="">(Sair)</a>
-
-
             </div>
         </div>
     </nav>

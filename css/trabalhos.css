@@ -1,258 +1,236 @@
-/* ============================================
-   MÓDULO TRABALHOS - CSS ISOLADO
-   Todas as classes começam com "trab-"
-   ============================================ */
+/* ===================================================
+   ESTILOS PRINCIPAIS PARA TRABALHOS E TAREFAS
+   =================================================== */
 
-/* ---------- BOTÃO NOVO TRABALHO ---------- */
+:root {
+  --bg-pagina: #68dbf2;
+  --bg-card: #00bde8;
+  --bg-input: #00bde8;
+  --texto-dark: #000000;
+  --cor-alerta: #e74c3c;
+  --radius-card: 28px;
+  --radius-input: 22px;
+}
+
+body {
+  background-color: var(--bg-pagina) !important;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--texto-dark);
+}
+
+/* ===================================================
+   TELA DE LISTAGEM (lista.php)
+   =================================================== */
+
+/* Botão Novo Trabalho / Nova Tarefa */
 .trab-btn-novo {
-    display: inline-block;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-card);
+  color: var(--texto-dark) !important;
+  text-decoration: none !important;
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: var(--radius-input);
+  margin-bottom: 25px;
+  transition: transform 0.1s ease, opacity 0.2s ease;
 }
 
 .trab-btn-novo:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
-    color: #fff;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-/* ---------- CONTAINER ---------- */
+/* Container que envelopa os cards */
 .trab-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
-    padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 950px;
 }
 
-/* ---------- CARD ---------- */
+/* Card Individual */
 .trab-card {
-    background: #1e1e2e;
-    border: 1px solid #2d2d44;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 22px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s;
 }
 
-.trab-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    border-color: #6366f1;
-}
-
-/* Card atrasado */
 .trab-card.trab-atrasado {
-    border-left: 5px solid #ef4444 !important;
+  border: 2px solid var(--cor-alerta);
 }
 
-/* ---------- HEADER DO CARD ---------- */
+/* Header do Card (Título e Matéria) */
 .trab-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 18px;
-    background: #252538;
-    border-bottom: 1px solid #2d2d44;
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
 }
 
 .trab-header strong {
-    font-size: 1.05rem;
-    color: #fff;
-    font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
-/* Badge da matéria */
 .trab-badge-materia {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    color: #fff;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
 
-/* ---------- BODY DO CARD ---------- */
+/* Body do Card (Informações e Ações) */
 .trab-body {
-    padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
 }
 
 .trab-info {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.95rem;
+  flex: 1;
 }
 
-.trab-info > div {
-    color: #cbd5e1;
-    font-size: 0.95rem;
-}
-
-/* Labels em destaque (Entrega, Integrantes...) */
-.trab-info > div:nth-child(odd) {
-    color: #94a3b8;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-}
-
-/* Linha separadora */
 .trab-linha {
-    height: 1px;
-    background: #2d2d44;
-    margin: 4px 0;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.12);
+  margin: 4px 0;
 }
 
-/* ---------- TAG ATRASADO ---------- */
 .trab-tag-atrasado {
-    display: inline-block;
-    background: #ef4444;
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 4px;
-    margin-left: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    animation: trabPulse 2s infinite;
+  background-color: var(--cor-alerta);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
 }
 
-@keyframes trabPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
-
-/* ---------- AÇÕES (EDITAR / EXCLUIR) ---------- */
+/* Botões de Ação no Card */
 .trab-acoes {
-    display: flex;
-    gap: 8px;
-    margin-top: 16px;
-    padding-top: 14px;
-    border-top: 1px solid #2d2d44;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
-.trab-acoes a {
-    flex: 1;
-    text-align: center;
-    padding: 8px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
+.trab-btn-editar,
+.trab-btn-excluir {
+  text-decoration: none !important;
+  padding: 8px 18px;
+  border-radius: 18px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: opacity 0.2s ease;
 }
 
 .trab-btn-editar {
-    background: #3b82f6;
-    color: #fff;
-}
-
-.trab-btn-editar:hover {
-    background: #2563eb;
-    color: #fff;
-    transform: translateY(-1px);
+  background-color: #ffffff;
+  color: var(--texto-dark) !important;
 }
 
 .trab-btn-excluir {
-    background: #ef4444;
-    color: #fff;
+  background-color: var(--cor-alerta);
+  color: #ffffff !important;
 }
 
+.trab-btn-editar:hover,
 .trab-btn-excluir:hover {
-    background: #dc2626;
-    color: #fff;
-    transform: translateY(-1px);
+  opacity: 0.85;
 }
 
-/* ---------- FORMULÁRIO ---------- */
+.trab-vazio {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* ===================================================
+   TELA DE FORMULÁRIO (form.php)
+   =================================================== */
+
 .trab-form-header h3 {
-    color: #fff;
-    font-size: 1.4rem;
-    margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
+.card.sem-bordas {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.card.sem-bordas .card-body {
+  padding: 0;
+}
+
+.card.sem-bordas form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 550px;
+}
+
+/* Estilização das entradas do formulário */
 .trab-campo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-    background: #1e1e2e;
-    padding: 10px 16px;
-    border-radius: 8px;
-    border: 1px solid #2d2d44;
-    transition: border-color 0.2s;
-}
-
-.trab-campo:focus-within {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .trab-campo label {
-    color: #94a3b8;
-    font-weight: 600;
-    min-width: 130px;
-    font-size: 0.9rem;
+  font-weight: bold;
+  font-size: 0.95rem;
+  margin-left: 8px;
 }
 
-.trab-campo input,
-.trab-campo textarea,
-.trab-campo select {
-    background: transparent;
-    border: none;
-    color: #fff;
-    flex: 1;
-    padding: 6px 0;
-    outline: none;
-    font-family: inherit;
-    font-size: 0.95rem;
+.trab-campo input[type="text"],
+.trab-campo input[type="date"],
+.trab-campo textarea {
+  background-color: var(--bg-input) !important;
+  border: none !important;
+  border-radius: var(--radius-input) !important;
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: var(--texto-dark) !important;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.trab-campo textarea {
+  border-radius: 20px !important;
+  resize: vertical;
 }
 
 .trab-campo input::placeholder,
 .trab-campo textarea::placeholder {
-    color: #64748b;
+  color: rgba(0, 0, 0, 0.6);
 }
 
-.trab-campo textarea {
-    resize: vertical;
-    min-height: 60px;
-}
-
-/* Botão salvar */
+/* Botão Salvar */
 .trab-btn-salvar {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    color: #fff;
-    padding: 12px 30px;
-    border-radius: 8px;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    margin-top: 16px;
+  background-color: var(--bg-card);
+  color: var(--texto-dark);
+  border: none;
+  border-radius: var(--radius-input);
+  padding: 10px 32px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 10px;
+  transition: opacity 0.2s ease;
 }
 
 .trab-btn-salvar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
-}
-
-/* ---------- MENSAGEM VAZIA ---------- */
-.trab-vazio {
-    color: #94a3b8;
-    text-align: center;
-    padding: 40px 20px;
-    font-size: 1rem;
+  opacity: 0.85;
 }

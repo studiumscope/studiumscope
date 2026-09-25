@@ -44,7 +44,25 @@
     margin: 2px;
     white-space: nowrap;
 }
+
+.btn-voltar {
+    display: inline-block;
+    background-color: #17b5d0;
+    color: #000;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.btn-voltar:hover {
+    background-color: #0fa0b9;
+    color: #000;
+}
 </style>
+
+<a href="../../home.php" class="btn-voltar">Voltar</a>
 
 <div class="card-header">
     <h3>Tela Horário</h3>

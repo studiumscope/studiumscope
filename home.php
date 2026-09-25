@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: authController.php?acao=login");
+    exit;
+}
+
+require_once 'db.php';
+$pdo = getConnection();
+$stmt = $pdo->prepare("SELECT nome FROM usuarios WHERE id = :id");
+$stmt->execute([':id' => $_SESSION['usuario_id']]);
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$primeiroNome = $usuario ? explode(' ', $usuario['nome'])[0] : 'Estudante';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

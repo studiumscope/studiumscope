@@ -1,409 +1,399 @@
-/* 
-   CONFIGURAÇÃO GERAL
- */
+/* ============================================
+   MÓDULO DISCIPLINAS - CSS 100% ISOLADO
+   Prefixo: .disc-
+   Sem regras globais (body, *, a, etc.)
+   ============================================ */
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    background-color: #7bd9e8;
-
-    color: #000;
-}
-
-
-/* 
-   BOTÃO NOVA DISCIPLINA
- */
-
-.btn-voltar {
-    position: absolute;
-
-    height: 62px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 0;
-
-    border-radius: 3px;
-
-    background-color: #10b9d3;
-
-    color: #111;
-
+/* ---------- BOTÃO NOVA DISCIPLINA ---------- */
+.disc-btn-novo {
+    display: inline-block;
+    background: linear-gradient(135deg, #6366f1, #5b18e8);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 12px;
     text-decoration: none;
-
-    font-size: 16px;
-    font-weight: 400;
-
-    transition: 0.2s;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin: 30px 0 0 30px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(91, 24, 232, 0.25);
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
-.btn-voltar:hover {
-    background-color: #08a8c1;
-
-    color: #000;
-
-    transform: scale(1.05);
+.disc-btn-novo:hover {
+    background: linear-gradient(135deg, #5b18e8, #4a11c2);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(91, 24, 232, 0.4);
 }
 
-
-/* 
-   CONTAINER DOS CARDS
- */
-
-.disciplinas-container {
-    width: 100%;
-
-    max-width: 950px;
-
-    margin: 92px auto 60px;
-
-    padding: 0 20px;
-
+/* ---------- CONTAINER ---------- */
+.disc-container {
+    max-width: 1100px;
+    margin: 30px auto 80px;
+    padding: 0 30px;
     display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 30px 40px;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 28px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
-
-/* 
-   CARD DA DISCIPLINA
- */
-
-.disciplina-card {
-    width: 100%;
-
-    min-height: 267px;
-
-    background-color: #c7d1db;
-
-    border-radius: 30px;
-
+/* ---------- CARD ---------- */
+.disc-card {
+    background: #ffffff;
+    border-radius: 20px;
     overflow: hidden;
-
-    position: relative;
-
-    box-shadow: none;
-}
-
-
-/* 
-   CABEÇALHO DO CARD
- */
-
-.disciplina-header {
-    height: 112px;
-
-    width: 100%;
-
-    padding: 0 28px;
-
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
     display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    border-radius: 30px 30px 30px 30px;
-
-    background-color: #5b18e8;
+    flex-direction: column;
 }
 
-
-/* Nome da matéria */
-
-.disciplina-header strong:first-child {
-    font-size: 40px;
-
-    font-weight: 800;
-
-    white-space: nowrap;
+.disc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
 }
 
-
-/* Professor */
-
-.disciplina-header strong:last-child {
-    font-size: 40px;
-
-    font-weight: 800;
-
-    white-space: nowrap;
-}
-
-
-/* 
-   CORES DOS CARDS
- */
-
-/* 1º card - Física */
-
-.disciplina-card:nth-child(4n + 1) .disciplina-header {
-    background-color: #5b18e8;
-}
-
-
-/* 2º card - Português */
-
-.disciplina-card:nth-child(4n + 2) .disciplina-header {
-    background-color: #eaaa08;
-}
-
-
-/* 3º card - Matemática */
-
-.disciplina-card:nth-child(4n + 3) .disciplina-header {
-    background-color: #c94b4f;
-}
-
-
-/* 4º card - Ed. Física */
-
-.disciplina-card:nth-child(4n + 4) .disciplina-header {
-    background-color: #76b957;
-}
-
-
-/* 
-   CORPO DO CARD
- */
-
-.disciplina-body {
+/* ---------- HEADER DO CARD ---------- */
+.disc-header {
+    padding: 22px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: #fff;
     position: relative;
-
-    min-height: 155px;
-
-    padding: 18px 28px 20px;
+    overflow: hidden;
 }
 
-
-/* 
-   INFORMAÇÕES
- */
-
-.informacoes {
-    font-size: 23px;
-
-    font-weight: 700;
-
-    line-height: 1.45;
-}
-
-
-/* Valor da nota */
-
-.informacoes > div:nth-child(2) {
-    font-weight: 400;
-}
-
-
-/* Linha horizontal */
-
-.informacoes .linha {
-    width: 100%;
-
-    height: 3px;
-
-    background-color: #111;
-
-    margin: 2px 0 3px;
-}
-
-
-/* 
-   AÇÕES
- */
-
-.acoes {
+.disc-header::after {
+    content: '';
     position: absolute;
-
-    right: 20px;
-    bottom: 15px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
+    top: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
+.disc-header strong {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    color: #fff;
+    line-height: 1.2;
+}
 
-/* Botão editar */
-
-.btn-editar {
-    width: 66px;
-    height: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 25px;
-
-    background-color: #10b9d3;
-
-    color: #111;
-
-    text-decoration: none;
-
+.disc-header span {
     font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+}
 
+/* ---------- CORES POR MATÉRIA (rotativas) ---------- */
+.disc-card:nth-child(4n + 1) .disc-header {
+    background: linear-gradient(135deg, #6366f1, #5b18e8);
+}
+
+.disc-card:nth-child(4n + 2) .disc-header {
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+}
+
+.disc-card:nth-child(4n + 3) .disc-header {
+    background: linear-gradient(135deg, #ef4444, #c94b4f);
+}
+
+.disc-card:nth-child(4n + 4) .disc-header {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+/* ---------- BODY DO CARD ---------- */
+.disc-body {
+    padding: 22px 26px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.disc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.disc-info > div {
+    color: #334155;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Labels */
+.disc-info > div:nth-child(odd) {
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Valores */
+.disc-info > div:nth-child(even) {
+    font-size: 20px;
     font-weight: 700;
+    color: #1e293b;
+}
 
+/* Contato menor */
+.disc-contato {
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    word-break: break-word;
+}
+
+/* Linha separadora */
+.disc-linha {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 6px 0;
+}
+
+/* ---------- AÇÕES ---------- */
+.disc-acoes {
+    display: flex;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.disc-acoes a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.disc-btn-editar {
+    background: #10b9d3;
+    color: #fff;
+}
+
+.disc-btn-editar:hover {
+    background: #08a8c1;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 211, 0.35);
+}
+
+.disc-btn-excluir {
+    background: #fee2e2;
+    color: #e94b55;
+}
+
+.disc-btn-excluir:hover {
+    background: #e94b55;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(233, 75, 85, 0.35);
+}
+
+/* ---------- VAZIO ---------- */
+.disc-vazio {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: #94a3b8;
+    padding: 60px 20px;
+    background: #fff;
+    border-radius: 20px;
+    border: 2px dashed #e2e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ============================================
+   FORMULÁRIO
+   ============================================ */
+
+.disc-form-wrapper {
+    max-width: 640px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.disc-form-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.disc-form-header {
+    margin-bottom: 30px;
+}
+
+.disc-form-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.3px;
+}
+
+.disc-form-header p {
+    color: #64748b;
+    margin: 0;
+    font-size: 14px;
+}
+
+.disc-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.disc-campo label {
+    color: #334155;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.disc-campo input {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    color: #111;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: 0.2s;
+    width: 100%;
+}
+
+.disc-campo input:focus {
+    outline: none;
+    border-color: #5b18e8;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(91, 24, 232, 0.1);
+}
+
+.disc-campo input::placeholder {
+    color: #94a3b8;
+}
+
+.disc-form-linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* ---------- BOTÕES DO FORM ---------- */
+.disc-form-acoes {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.disc-btn-cancelar {
+    flex: 1;
+    text-align: center;
+    padding: 14px;
+    border-radius: 12px;
+    background: #f1f5f9;
+    color: #475569;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
     transition: 0.2s;
 }
 
-
-.btn-editar:hover {
-    background-color: #08a8c1;
-
-    color: #000;
-
-    transform: scale(1.05);
+.disc-btn-cancelar:hover {
+    background: #e2e8f0;
+    color: #1e293b;
 }
 
-
-/* 
-   BOTÃO EXCLUIR
- */
-
-.btn-excluir {
-    width: 66px;
-    height: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 25px;
-
-    background-color: #e94b55;
-
+.disc-btn-salvar {
+    flex: 2;
+    background: linear-gradient(135deg, #6366f1, #5b18e8);
     color: #fff;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    font-weight: 700;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    transition: 0.25s;
+    box-shadow: 0 6px 20px rgba(91, 24, 232, 0.3);
+    font-family: inherit;
 }
 
-
-.btn-excluir:hover {
-    background-color: #c93640;
-
-    color: #fff;
+.disc-btn-salvar:hover {
+    background: linear-gradient(135deg, #5b18e8, #4a11c2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(91, 24, 232, 0.4);
 }
 
-
-/* 
-   ESCONDER EXCLUIR
-   A IMAGEM MOSTRA SOMENTE "EDITAR"
- */
-
-.btn-excluir {
-    display: none;
-}
-
-
-/* 
-   MENSAGEM SEM DISCIPLINAS
- */
-
-.disciplinas-container > p {
-    grid-column: 1 / -1;
-
-    text-align: center;
-
-    font-size: 25px;
-
-    font-weight: 700;
-}
-
-
-/* 
-   REMOVER ESTILOS DO BOOTSTRAP
- */
-
-a {
-    outline: none;
-}
-
-a:focus {
-    outline: none;
-}
-
-
-/* 
-   RESPONSIVIDADE
- */
+/* ============================================
+   RESPONSIVO
+   ============================================ */
 
 @media (max-width: 900px) {
-
-    .disciplinas-container {
+    .disc-container {
         max-width: 700px;
-
         grid-template-columns: 1fr;
-
-        margin-top: 110px;
-    }
-
-    .disciplina-header strong:first-child,
-    .disciplina-header strong:last-child {
-        font-size: 32px;
+        padding: 0 20px;
     }
 }
 
-
 @media (max-width: 600px) {
-
-    .btn-voltar {
-        top: 20px;
-        left: 20px;
-
-        width: 65px;
-        height: 55px;
+    .disc-btn-novo {
+        margin: 20px 0 0 20px;
+        padding: 10px 20px;
+        font-size: 14px;
     }
 
-    .disciplinas-container {
-        margin-top: 100px;
-
+    .disc-container {
         padding: 0 15px;
-
         gap: 20px;
     }
 
-    .disciplina-card {
-        min-height: 240px;
+    .disc-header {
+        padding: 18px 22px;
     }
 
-    .disciplina-header {
-        height: 90px;
-
-        padding: 0 20px;
+    .disc-header strong {
+        font-size: 18px;
     }
 
-    .disciplina-header strong:first-child,
-    .disciplina-header strong:last-child {
-        font-size: 25px;
+    .disc-body {
+        padding: 18px 22px 20px;
     }
 
-    .disciplina-body {
-        padding: 15px 20px;
+    .disc-info > div:nth-child(even) {
+        font-size: 17px;
     }
 
-    .informacoes {
-        font-size: 19px;
+    .disc-form-card {
+        padding: 25px;
+    }
+
+    .disc-form-linha {
+        grid-template-columns: 1fr;
+    }
+
+    .disc-form-header h1 {
+        font-size: 22px;
     }
 }

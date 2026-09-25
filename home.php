@@ -63,15 +63,15 @@
             <h2>Calendário</h2>
             
             <div class="calendario-card">
-                <span class="weekday">Terça-Feira</span>
+                <span class="weekday">Sexta-Feira</span>
                 <time datetime="2026-09-08">
-                    <span class="day">08</span>
+                    <span class="day">25</span>
                     <span class="month">setembro</span>
                 </time>
 
                 <div class="parahoje">
                     <h3>Para hoje:</h3>
-                    <p>...</p>
+                    <p>STUDIUM!!!</p>
                 </div>
 
                 <a class="btn btn-primary" href="paginas/calendario/controller.php">ENTRAR</a>

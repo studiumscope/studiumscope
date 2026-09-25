@@ -27,7 +27,7 @@ $primeiroNome = $usuario ? explode(' ', $usuario['nome'])[0] : 'Estudante';
 
     <header class="home-header">
         <h1>STUDIUM</h1>
-        
+        <p>Olá, <?php echo htmlspecialchars($primeiroNome); ?>!</p>
         <div class="user-actions">
             <a class="btn btn-primary" href="paginas/premium/premium.php" aria-label="STUD+">+</a>
             <a href="paginas/perfil/perfil.php" class="profile-avatar">
@@ -59,13 +59,13 @@ $primeiroNome = $usuario ? explode(' ', $usuario['nome'])[0] : 'Estudante';
                     </a>
                 </li>
                 <li>
-                    <a href="paginas/premium.php">
+                    <a href="paginas/premium/premium.php">
                         <span class="icon icon-metas" aria-hidden="true"></span>
                         <span class="label">Metas</span>
                     </a>
                 </li>
                 <li>
-                    <a href="paginas/premium.php">
+                    <a href="paginas/premium/premium.php">
                         <span class="icon icon-progresso" aria-hidden="true"></span>
                         <span class="label">Progresso</span>
                     </a>

@@ -1,9 +1,5 @@
 <?php
 session_start();
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: ../../authController.php?acao=login");
-    exit;
-}
 require_once 'db.php';
 
 $controller = new AuthController();

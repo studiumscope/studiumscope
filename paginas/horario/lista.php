@@ -1,75 +1,15 @@
-<style>
-.tabela-horario {
-    width: 100%;
-    table-layout: fixed;
-}
-
-.tabela-horario th,
-.tabela-horario td {
-    text-align: center;
-    vertical-align: middle;
-    padding: 10px 5px;
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
-}
-
-.tabela-horario th:first-child,
-.tabela-horario td:first-child {
-    width: 70px;
-}
-
-.tabela-horario th:nth-child(2),
-.tabela-horario td:nth-child(2),
-.tabela-horario th:nth-child(3),
-.tabela-horario td:nth-child(3),
-.tabela-horario th:nth-child(4),
-.tabela-horario td:nth-child(4),
-.tabela-horario th:nth-child(5),
-.tabela-horario td:nth-child(5),
-.tabela-horario th:nth-child(6),
-.tabela-horario td:nth-child(6),
-.tabela-horario th:nth-child(7),
-.tabela-horario td:nth-child(7),
-.tabela-horario th:nth-child(8),
-.tabela-horario td:nth-child(8) {
-    width: 110px;
-}
-
-.tabela-horario th:last-child,
-.tabela-horario td:last-child {
-    width: 150px;
-}
-
-.tabela-horario .btn {
-    margin: 2px;
-    white-space: nowrap;
-}
-
-.btn-voltar {
-    display: inline-block;
-    background-color: #17b5d0;
-    color: #000;
-    text-decoration: none;
-    padding: 12px 22px;
-    border-radius: 30px;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.btn-voltar:hover {
-    background-color: #0fa0b9;
-    color: #000;
-}
-</style>
-
-<a href="../../home.php" class="btn-voltar">Voltar</a>
-
 <div class="card-header">
     <h3>Tela Horário</h3>
 </div>
 
 <div class="card mt-5">
     <div class="card-body">
+
+        <div class="mb-3">
+            <a href="../../home.php" class="btn btn-info btn-voltar">
+                Voltar
+            </a>
+        </div>
 
         <a href="controller.php?acao=editar" class="btn btn-primary mb-4">
             Agendar Horário
@@ -153,3 +93,57 @@
 
     </div>
 </div>
+
+<style>
+.tabela-horario {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tabela-horario th,
+.tabela-horario td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px 5px;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+.tabela-horario th:first-child,
+.tabela-horario td:first-child {
+    width: 70px;
+}
+
+.tabela-horario th:nth-child(2),
+.tabela-horario td:nth-child(2),
+.tabela-horario th:nth-child(3),
+.tabela-horario td:nth-child(3),
+.tabela-horario th:nth-child(4),
+.tabela-horario td:nth-child(4),
+.tabela-horario th:nth-child(5),
+.tabela-horario td:nth-child(5),
+.tabela-horario th:nth-child(6),
+.tabela-horario td:nth-child(6),
+.tabela-horario th:nth-child(7),
+.tabela-horario td:nth-child(7),
+.tabela-horario th:nth-child(8),
+.tabela-horario td:nth-child(8) {
+    width: 110px;
+}
+
+.tabela-horario th:last-child,
+.tabela-horario td:last-child {
+    width: 150px;
+}
+
+.tabela-horario .btn {
+    margin: 2px;
+    white-space: nowrap;
+}
+
+.btn-voltar {
+    font-size: 14px;
+    padding: 6px 16px;
+    border-radius: 8px;
+}
+</style>

@@ -1,10 +1,10 @@
 <?php
 function getConnection() {
-    $host_db = 'aws-0-us-east-1.pooler.supabase.com';
-    $port_db = '6543';
+    $host_db = 'db.eoujlobvrtsflkbiucno.supabase.co';
+    $port_db = '5432';
     $nome_db = 'postgres';
-    $usuario_db = 'postgres.klrmaxbiqcoxsvbtklrw';
-    $senha_db = 'studium1145';
+    $usuario_db = 'postgres';
+    $senha_db = 'studiumscope';
 
     try {
         $pdo = new PDO("pgsql:host=$host_db;port=$port_db;dbname=$nome_db", $usuario_db, $senha_db);

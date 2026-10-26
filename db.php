@@ -3,7 +3,7 @@ function getConnection() {
     $host_db = 'aws-0-us-east-1.pooler.supabase.com';
     $port_db = '5432';
     $nome_db = 'postgres';
-    $usuario_db = 'postgres';
+    $usuario_db = 'postgres.eoujlobvrtsflkbiucno';
     $senha_db = 'studiumscope';
 
     try {

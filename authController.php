@@ -39,25 +39,29 @@ class AuthController {
     }
 
     public function login() {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $pdo = getConnection();
-        $email = $_POST['email'] ?? '';
-        $senha = $_POST['senha'] ?? '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $pdo = getConnection();
+            $email = $_POST['email'] ?? '';
+            $senha = $_POST['senha'] ?? '';
 
-        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email AND senha = :senha");
-        $stmt->execute([':email' => $email, ':senha' => $senha]);
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            // 1. Buscamos apenas pelo e-mail (nunca pela senha direto no SQL)
+            $stmt = $pdo->prepare("SELECT id, senha FROM usuarios WHERE email = :email");
+            $stmt->execute([':email' => $email]);
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($usuario) {
-            $_SESSION['usuario_id'] = $usuario['id'];
-            header("Location: home.php");
-            exit;
+            // 2. Usamos password_verify para checar a senha criptografada de forma segura
+            if ($usuario && password_verify($senha, $usuario['senha'])) {
+                $_SESSION['usuario_id'] = $usuario['id'];
+                header("Location: home.php");
+                exit;
+            } else {
+                $erro = "E-mail ou senha incorretos."; // Dica: use essa variável na sua view login.php para exibir o erro
+            }
         }
-    }
 
-    include "_cabecalho.php";
-    include 'login.php';
-    include "_rodape.php";
+        include "_cabecalho.php";
+        include 'login.php';
+        include "_rodape.php";
     }
 
     public function salvar() {
@@ -67,12 +71,16 @@ class AuthController {
             $email = $_POST['email'] ?? '';
             $senha = $_POST['senha'] ?? '';
 
-            $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)");
-            $stmt->execute([
-                ':nome' => $nome,
-                ':email' => $email,
-                ':senha' => $senha
-            ]);
+            if (!empty($nome) && !empty($email) && !empty($senha)) {
+                $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+                $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)");
+                $stmt->execute([
+                    ':nome' => $nome,
+                    ':email' => $email,
+                    ':senha' => $senhaHash
+                ]);
+            }
 
             header("Location: authController.php?acao=login");
             exit;
@@ -80,6 +88,8 @@ class AuthController {
     }
 
     public function sair() {
+        // Limpa todas as variáveis de sessão e destrói o arquivo no servidor
+        $_SESSION = [];
         session_destroy();
         header("Location: authController.php?acao=login");
         exit;

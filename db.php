@@ -1,6 +1,6 @@
 <?php
 function getConnection() {
-    $host_db = 'db.eoujlobvrtsflkbiucno.supabase.co';
+    $host_db = 'aws-0-us-east-1.pooler.supabase.com';
     $port_db = '5432';
     $nome_db = 'postgres';
     $usuario_db = 'postgres';
